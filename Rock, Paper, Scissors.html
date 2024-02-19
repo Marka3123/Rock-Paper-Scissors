@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper, Scissors</title>
+
+<style>
+
+    @import url('https://fonts.cdnfonts.com/css/public-pixel');
+
+    body{
+        text-align: center;
+        background-image:url(pixelBackground2.gif);
+        background-size: cover;    
+    }
+
+    #startScreen{
+        width: 500px;
+        height: 400px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        font-size: 20px;
+        font-family: 'Public Pixel', sans-serif;                
+    }
+
+    #instructionsScreen{
+        width: 600px;
+        height: 300px;
+        background-color: rgba(69, 11, 117, 0.692);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        border: black solid;
+        font-family: 'Public Pixel', sans-serif;
+        display: none;
+    }
+
+    #levelsPage{
+        width: 500px;
+        height: 400px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        font-size: 20px;
+        display: none;
+        font-family: 'Public Pixel', sans-serif;
+    }
+
+    #playButton{
+        height: 80px;
+        width: 300px;
+        background-color: rgba(136, 93, 255, 0.788);
+        position: relative;
+        top: 50px;
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 30px;
+        border: black solid;     
+        border-radius: 20px; 
+    }
+
+    #playButton:hover{
+        height: 80px;
+        width: 300px;
+        background-color: rgba(88, 37, 228, 0.788);
+        position: relative;
+        top: 50px;
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 30px;
+        border: black solid;     
+        border-radius: 20px; 
+    }
+
+    #instructionsButton{
+        height: 80px;
+        width: 300px;
+        background-color: rgba(136, 93, 255, 0.788);
+        position: relative;
+        top: 80px;
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 20px;
+        border: black solid; 
+        border-radius: 20px;
+    }
+
+    #instructionsButton:hover{
+        height: 80px;
+        width: 300px;
+        background-color: rgba(88, 37, 228, 0.788);
+        position: relative;
+        top: 80px;
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 20px;
+        border: black solid; 
+        border-radius: 20px;
+    }
+
+    #easyButton{   
+        height: 80px;
+        width: 300px;
+        background-color: rgba(136, 93, 255, 0.788);
+        position: relative;
+        top: 50px;
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 30px;
+        border: black solid 3px;    
+        border-radius: 20px;
+    }
+
+    #easyButton:hover{   
+        height: 80px;
+        width: 300px;
+        background-color: rgba(88, 37, 228, 0.788);
+        position: relative;
+        top: 50px;
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 30px;
+        border: black solid 3px;    
+        border-radius: 20px;
+    }
+
+    #mediumButton{   
+        height: 80px;
+        width: 300px;
+        background-color: rgba(136, 93, 255, 0.788);
+        position: relative;
+        top: 70px;
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 30px;
+        border: black solid 3px;    
+        border-radius: 20px;
+    }
+
+    #mediumButton:hover{   
+        height: 80px;
+        width: 300px;
+        background-color: rgba(88, 37, 228, 0.788);
+        position: relative;
+        top: 70px;
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 30px;
+        border: black solid 3px;    
+        border-radius: 20px;
+    }
+
+    #impossibleButton{   
+        height: 80px;
+        width: 300px;
+        background-color: rgba(136, 93, 255, 0.788);
+        position: relative;
+        top: 90px;
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 25px;
+        border: black solid 3px;    
+        border-radius: 20px;
+    }
+
+    #impossibleButton:hover{   
+        height: 80px;
+        width: 300px;
+        background-color: rgba(88, 37, 228, 0.788);
+        position: relative;
+        top: 90px;
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 25px;
+        border: black solid 3px;    
+        border-radius: 20px;
+    }
+
+    #mainScreenEasy{
+        display: none;
+        width: 900px;
+        height: 600px;
+        border: solid 5px rgb(73, 0, 73);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background-color: rgba(163, 87, 240, 0.795);
+    }
+    
+    #mainScreenMedium{
+        display: none;
+        width: 900px;
+        height: 600px;
+        border: solid 5px rgb(73, 0, 73);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background-color: rgba(163, 87, 240, 0.795);
+    }
+
+    #mainScreenHard{
+        display: none;
+        width: 900px;
+        height: 600px;
+        border: solid 5px rgb(73, 0, 73);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background-color: rgba(163, 87, 240, 0.795);
+    }
+    
+    #healthBarEasy{
+        width: 45px;
+        height: 400px;
+        border: solid 3px black;
+        position: absolute;
+        top: 50%;
+        left: 3%;
+        transform: translate(-3%,-50%);
+        background-color: aqua;
+    }
+
+    #healthBarBotEasy{
+        width: 45px;
+        height: 400px;
+        border: solid 3px black;
+        position: absolute;
+        top: 50%;
+        left: 97%;
+        transform: translate(-97%,-50%);
+        background-color: aqua;
+    }
+
+    #healthBarMedium{
+        width: 45px;
+        height: 400px;
+        border: solid 3px black;
+        position: absolute;
+        top: 50%;
+        left: 3%;
+        transform: translate(-3%,-50%);
+        background-color: aqua;
+    }
+
+    #healthBarBotMedium{
+        width: 45px;
+        height: 400px;
+        border: solid 3px black;
+        position: absolute;
+        top: 50%;
+        left: 97%;
+        transform: translate(-97%,-50%);
+        background-color: aqua;
+    }
+
+    #healthBarHard{
+        width: 45px;
+        height: 400px;
+        border: solid 3px black;
+        position: absolute;
+        top: 50%;
+        left: 3%;
+        transform: translate(-3%,-50%);
+        background-color: aqua;
+    }
+
+    #healthBarBotHard{
+        width: 45px;
+        height: 400px;
+        border: solid 3px black;
+        position: absolute;
+        top: 50%;
+        left: 97%;
+        transform: translate(-97%,-50%);
+        background-color: aqua;
+    }
+    
+    #rockEasy{
+        width: 100px;
+        height: 100px;
+        background: url(Rock.png);
+        background-size: contain;
+        position: absolute;
+        top: 25%;
+        left: 15%;
+        transform: translate(-15%,-25%);
+        transition: left 2s;
+        margin: 5px; 
+        
+    }
+
+    #paperEasy{
+        width: 80px;
+        height: 100px;
+        background: url(Paper.png);
+        background-size: contain;
+        position: absolute;
+        top: 50%;
+        left: 15%;
+        transform: translate(-15%,-50%);
+        margin: 5px;
+        transition: left 2s;
+    }
+
+    #scissorsEasy{
+        width: 100px;
+        height: 100px;
+        background: url(Scissors.png);
+        background-size: contain;
+        position: absolute;
+        top: 75%;
+        left: 15%;
+        transform: translate(-15%,-75%);
+        margin: 5px;
+        transition: left 2s;
+    }
+
+    #rockMedium{
+        width: 100px;
+        height: 100px;
+        background: url(Rock.png);
+        background-size: contain;
+        position: absolute;
+        top: 25%;
+        left: 15%;
+        transform: translate(-15%,-25%);
+        transition: left 2s;
+        margin: 5px; 
+        
+    }
+
+    #paperMedium{
+        width: 80px;
+        height: 100px;
+        background: url(Paper.png);
+        background-size: contain;
+        position: absolute;
+        top: 50%;
+        left: 15%;
+        transform: translate(-15%,-50%);
+        margin: 5px;
+        transition: left 2s;
+    }
+
+    #scissorsMedium{
+        width: 100px;
+        height: 100px;
+        background: url(Scissors.png);
+        background-size: contain;
+        position: absolute;
+        top: 75%;
+        left: 15%;
+        transform: translate(-15%,-75%);
+        margin: 5px;
+        transition: left 2s;
+    }
+
+    #rockHard{
+        width: 100px;
+        height: 100px;
+        background: url(Rock.png);
+        background-size: contain;
+        position: absolute;
+        top: 25%;
+        left: 15%;
+        transform: translate(-15%,-25%);
+        transition: left 2s;
+        margin: 5px; 
+        
+    }
+
+    #paperHard{
+        width: 80px;
+        height: 100px;
+        background: url(Paper.png);
+        background-size: contain;
+        position: absolute;
+        top: 50%;
+        left: 15%;
+        transform: translate(-15%,-50%);
+        margin: 5px;
+        transition: left 2s;
+    }
+
+    #scissorsHard{
+        width: 100px;
+        height: 100px;
+        background: url(Scissors.png);
+        background-size: contain;
+        position: absolute;
+        top: 75%;
+        left: 15%;
+        transform: translate(-15%,-75%);
+        margin: 5px;
+        transition: left 2s;
+    }
+
+    #rockBotEasy{
+        width: 100px;
+        height: 100px;
+        background: url(Rock.png);
+        background-size: contain;
+        position: absolute;
+        top: 25%;
+        left: 85%;
+        transform: translate(-85%,-25%);
+        margin: 5px;
+        transition: 1s;
+    }
+
+    #paperBotEasy{
+        width: 80px;
+        height: 100px;
+        background: url(Paper.png);
+        background-size: contain;
+        position: absolute;
+        top: 50%;
+        left: 85%;
+        transform: translate(-85%,-50%);
+        margin: 5px;
+        transition: 1s;
+    }
+
+    #scissorsBotEasy{
+        width: 100px;
+        height: 100px;
+        background: url(Scissors.png);
+        background-size: contain;
+        position: absolute;
+        top: 75%;
+        left: 85%;
+        transform: translate(-85%,-75%);
+        margin: 5px;
+        transition: 1s;
+    }
+
+    #rockBotMedium{
+        width: 100px;
+        height: 100px;
+        background: url(Rock.png);
+        background-size: contain;
+        position: absolute;
+        top: 25%;
+        left: 85%;
+        transform: translate(-85%,-25%);
+        margin: 5px;
+        transition: 1s;
+    }
+
+    #paperBotMedium{
+        width: 80px;
+        height: 100px;
+        background: url(Paper.png);
+        background-size: contain;
+        position: absolute;
+        top: 50%;
+        left: 85%;
+        transform: translate(-85%,-50%);
+        margin: 5px;
+        transition: 1s;
+    }
+
+    #scissorsBotMedium{
+        width: 100px;
+        height: 100px;
+        background: url(Scissors.png);
+        background-size: contain;
+        position: absolute;
+        top: 75%;
+        left: 85%;
+        transform: translate(-85%,-75%);
+        margin: 5px;
+        transition: 1s;
+    }
+
+    #rockBotHard{
+        width: 100px;
+        height: 100px;
+        background: url(Rock.png);
+        background-size: contain;
+        position: absolute;
+        top: 25%;
+        left: 85%;
+        transform: translate(-85%,-25%);
+        margin: 5px;
+        transition: 1s;
+    }
+
+    #paperBotHard{
+        width: 80px;
+        height: 100px;
+        background: url(Paper.png);
+        background-size: contain;
+        position: absolute;
+        top: 50%;
+        left: 85%;
+        transform: translate(-85%,-50%);
+        margin: 5px;
+        transition: 1s;
+    }
+
+    #scissorsBotHard{
+        width: 100px;
+        height: 100px;
+        background: url(Scissors.png);
+        background-size: contain;
+        position: absolute;
+        top: 75%;
+        left: 85%;
+        transform: translate(-85%,-75%);
+        margin: 5px;
+        transition: 1s;
+    }
+
+    #battleEasy{   
+        height: 80px;
+        width: 300px;
+        background-color: rgba(125, 29, 204, 0.322);
+        position: absolute;
+        top: 95%;
+        left: 50%;
+        transform: translate(-50%,-95%);
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 30px;
+        border: black solid 3px;    
+        border-radius: 20px;
+    }
+
+    #battleEasy:hover{   
+        height: 80px;
+        width: 300px;
+        background-color: rgba(69, 11, 117, 0.692);
+        position: absolute;
+        top: 95%;
+        left: 50%;
+        transform: translate(-50%,-95%);
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 30px;
+        border: black solid 3px;    
+        border-radius: 20px;
+    }
+
+    #battleMedium{   
+        height: 80px;
+        width: 300px;
+        background-color: rgba(125, 29, 204, 0.322);
+        position: absolute;
+        top: 95%;
+        left: 50%;
+        transform: translate(-50%,-95%);
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 30px;
+        border: black solid 3px;    
+        border-radius: 20px;
+    }
+
+    #battleMedium:hover{   
+        height: 80px;
+        width: 300px;
+        background-color: rgba(69, 11, 117, 0.692);
+        position: absolute;
+        top: 95%;
+        left: 50%;
+        transform: translate(-50%,-95%);
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 30px;
+        border: black solid 3px;    
+        border-radius: 20px;
+    }
+
+    #battleHard{   
+        height: 80px;
+        width: 300px;
+        background-color: rgba(125, 29, 204, 0.322);
+        position: absolute;
+        top: 95%;
+        left: 50%;
+        transform: translate(-50%,-95%);
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 30px;
+        border: black solid 3px;    
+        border-radius: 20px;
+    }
+
+    #battleHard:hover{   
+        height: 80px;
+        width: 300px;
+        background-color: rgba(69, 11, 117, 0.692);
+        position: absolute;
+        top: 95%;
+        left: 50%;
+        transform: translate(-50%,-95%);
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 30px;
+        border: black solid 3px;    
+        border-radius: 20px;
+    }
+
+    #messageEasy{   
+        height: 400px;
+        width: 500px;
+        background-color: rgb(113, 1, 204);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 50px;
+        border: black solid 3px;    
+        border-radius: 20px;
+        padding: 50px;
+        display: none;
+        text-align: center;
+        margin: auto;
+    }
+
+    #messageMedium{   
+        height: 400px;
+        width: 500px;
+        background-color: rgb(113, 1, 204);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 50px;
+        border: black solid 3px;    
+        border-radius: 20px;
+        padding: 50px;
+        display: none;
+        text-align: center;
+        margin: auto;
+    }
+
+    #messageHard{   
+        height: 400px;
+        width: 500px;
+        background-color: rgb(113, 1, 204);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 50px;
+        border: black solid 3px;    
+        border-radius: 20px;
+        padding: 50px;
+        display: none;
+        text-align: center;
+        margin: auto;
+    }
+
+    #you{
+        position: absolute;
+        top: 10%;
+        left: 3%;
+        font-size: large;
+        transform: translate(-3%,-10%);
+        width: 45px;
+        font-family: 'Public Pixel', sans-serif;
+    }
+
+    #bot{
+        position: absolute;
+        top: 10%;
+        left: 96.5%;
+        font-size: large;
+        transform: translate(-96.5%,-10%);
+        width: 45px;
+        font-family: 'Public Pixel', sans-serif;
+    }
+
+    #loseAndWinScreen{   
+        height: 400px;
+        width: 500px;
+        background-color: rgb(113, 1, 204);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 20px;
+        border: black solid 3px;    
+        border-radius: 20px;
+        padding: 50px;
+        display: none;
+        text-align: center;
+        margin: auto;
+    }
+
+    #restart{
+        background-color: rgb(113, 1, 204);
+        height: 80px;
+        width: 300px;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -70%);
+        font-family: 'Public Pixel', sans-serif;
+        font-size: 30px;
+        border: solid 2px black; 
+    }
+
+    #music{
+        width: 150px;
+        height: 50px;
+        background-color: rgb(113, 1, 204);
+        position: absolute;
+        right: 5%;
+        top: 5%;
+        margin: 5px;
+        font-family: 'Public Pixel', sans-serif;
+        display: none;
+   }
+        
+    #music2{
+        width: 150px;
+        height: 50px;
+        background-color: rgb(113, 1, 204);
+        position: absolute;
+        right: 5%;
+        top: 15%;
+        margin: 5px;
+        font-family: 'Public Pixel', sans-serif;
+        display: none;
+    }
+
+    #back{
+        height: 80px;
+        width: 150px;
+        background-color: rgb(113, 1, 204);
+        position: absolute;
+        left: 5%;
+        top: 5%;
+        font-size: 30px;
+        border: black solid;
+        border-radius: 5px;
+        font-family: 'Public Pixel', sans-serif;
+        display: none;
+    }
+
+    #hint{
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        transform: translate(-50%,-5%);
+        text-align: center;
+        font-family: 'Public Pixel', sans-serif;
+    }
+
+    
+</style>
+
+
+</head>
+
+<link href="https://fonts.cdnfonts.com/css/public-pixel" rel="stylesheet">
+
+<body>
+
+    <!-- Start Screen-->
+
+    <div id="startScreen">
+        <h1>Rock, Paper, Scissors</h1>
+        <input type="button" id="playButton" value="Play" onclick="levelsPage()"/>
+        <input type="button" id="instructionsButton" value="Instructions" onclick="instructionsPage()">
+    </div>
+
+    <!-- Levels Screen -->
+    
+    <div id="levelsPage">
+        <h1>Choose Your Level</h1>
+        <input type="button" id="easyButton" value="Easy" onclick="easyVersion()">
+        <input type="button" id="mediumButton" value="Medium" onclick="mediumVersion()">
+        <input type="button" id="impossibleButton" value="Impossible" onclick="impossibleVersion()">
+    </div>
+
+    <!-- Instructions Screen -->
+
+    <input type="button" id="back" value="Back" onclick="backToStartScreen()">
+
+    <div id="instructionsScreen">
+        <h2 id="titleInstructions">Instructions</h2>
+        <p id="rules">This is a rock, paper, scissors game where you need to beat the computer 4 times in the same game. There are 3 levels to choose from: easy, medium and impossible. With each levels, the difficulty increases. Beat the computer, and YOU WIN! Enjoy the game.</p>
+    </div>
+
+    <!-- Main Screen Easy -->
+
+    <div id="mainScreenEasy">
+        <div id="you">YOU</div>
+        <div id="bot">BOT</div>
+        <div id="hint">Choose your weapon</div>
+        <div id="healthBarEasy"></div>
+        <div id="healthBarBotEasy"></div>
+        <div id="rockEasy" onclick="RockEasy()"></div>
+        <div id="paperEasy" onclick="PaperEasy()"></div>
+        <div id="scissorsEasy" onclick="ScissorsEasy()"></div>
+        <input type="button" value="Battle" id="battleEasy" onclick="BattleEasy()">
+        <div id="rockBotEasy"></div>
+        <div id="paperBotEasy"></div>
+        <div id="scissorsBotEasy"></div>
+        <div id="messageEasy"></div>
+    </div>
+
+    <input type="button" id=music value="Play Music" onclick="playMusic()">
+    <input type="button" id=music2 value="Stop Music" onclick="stopMusic()">
+
+    <!-- Main Screen Medium -->
+
+    <div id="mainScreenMedium">
+        <div id="you">YOU</div>
+        <div id="bot">BOT</div>
+        <div id="hint">Choose your weapon</div>
+        <div id="healthBarMedium"></div>
+        <div id="healthBarBotMedium"></div>
+        <div id="rockMedium" onclick="RockMedium()"></div>
+        <div id="paperMedium" onclick="PaperMedium()"></div>
+        <div id="scissorsMedium" onclick="ScissorsMedium()"></div>
+        <input type="button" value="Battle" id="battleMedium" onclick="BattleMedium()">
+        <div id="rockBotMedium"></div>
+        <div id="paperBotMedium"></div>
+        <div id="scissorsBotMedium"></div>
+        <div id="messageMedium"></div>
+    </div>
+
+    <input type="button" id=music value="Play Music" onclick="playMusic()">
+    <input type="button" id=music2 value="Stop Music" onclick="stopMusic()">
+
+    <!-- Main Screen Hard -->
+
+    <div id="mainScreenHard">
+        <div id="you">YOU</div>
+        <div id="bot">BOT</div>
+        <div id="hint">Choose your weapon</div>
+        <div id="healthBarHard"></div>
+        <div id="healthBarBotHard"></div>
+        <div id="rockHard" onclick="RockHard()"></div>
+        <div id="paperHard" onclick="PaperHard()"></div>
+        <div id="scissorsHard" onclick="ScissorsHard()"></div>
+        <input type="button" value="Battle" id="battleHard" onclick="BattleHard()">
+        <div id="rockBotHard"></div>
+        <div id="paperBotHard"></div>
+        <div id="scissorsBotHard"></div>
+        <div id="messageHard"></div>
+    </div>
+
+    <input type="button" id=music value="Play Music" onclick="playMusic()">
+    <input type="button" id=music2 value="Stop Music" onclick="stopMusic()">
+
+    <!-- End Screen -->
+
+    <div id="loseAndWinScreen">
+        <p id="message2"></p>
+        <input type="button" id="restart" value="Restart" onclick="restart()">
+    </div>
+    
+<script>
+
+
+    // Variables
+
+    var vie=400
+    var vieBot=400
+    var playerChoice
+    var computerChoice
+
+    // Levels Page Function
+
+    function levelsPage(){
+    
+        document.getElementById("startScreen").style.display="none"
+        document.getElementById("levelsPage").style.display="block"
+    }
+
+    // Instructions Page Function
+
+    function instructionsPage(){
+        document.getElementById("startScreen").style.display="none"
+        document.getElementById("instructionsScreen").style.display="block"
+        document.getElementById("back").style.display="block"
+    }
+
+    function backToStartScreen(){
+        document.getElementById("startScreen").style.display="block"
+        document.getElementById("instructionsScreen").style.display="none"
+        document.getElementById("back").style.display="none"
+    }
+    
+
+    // Version Functions
+
+    function easyVersion(){
+        document.getElementById("music").style.display="block"
+        document.getElementById("music2").style.display="block"
+        document.body.style.backgroundImage=("url(pixelBackground3.gif)")
+        document.getElementById("levelsPage").style.display="none"
+        document.getElementById("mainScreenEasy").style.display="block"
+        document.getElementById("mainScreenMedium").style.display="none"
+        document.getElementById("mainScreenHard").style.display="none"
+
+    } 
+
+    function mediumVersion(){
+        document.getElementById("music").style.display="block"
+        document.getElementById("music2").style.display="block"
+        document.body.style.backgroundImage=("url(pixelBackground3.gif)")
+        document.getElementById("levelsPage").style.display="none"
+        document.getElementById("mainScreenMedium").style.display="block"
+        document.getElementById("mainScreenEasy").style.display="none"
+        document.getElementById("mainScreenHard").style.display="none"
+    } 
+
+    function impossibleVersion(){
+        document.getElementById("music").style.display="block"
+        document.getElementById("music2").style.display="block"
+        document.body.style.backgroundImage=("url(pixelBackground3.gif)")
+        document.getElementById("levelsPage").style.display="none"
+        document.getElementById("mainScreenHard").style.display="block"
+        document.getElementById("mainScreenMedium").style.display="none"
+        document.getElementById("mainScreenEasy").style.display="none"
+    } 
+
+    // Rock, Paper, Scissors Functions
+
+    function RockEasy(){
+        console.log("Rock clicked")
+        document.getElementById("rockEasy").style.left="30%"
+        document.getElementById("paperEasy").style.left="15%"
+        document.getElementById("scissorsEasy").style.left="15%"
+        playerChoice="rockEasy"
+    }
+
+    function PaperEasy(){
+        console.log("Paper clicked")
+        document.getElementById("paperEasy").style.left="30%"
+        document.getElementById("rockEasy").style.left="15%"
+        document.getElementById("scissorsEasy").style.left="15%"
+        playerChoice="paperEasy"
+    }
+
+    function ScissorsEasy(){
+        console.log("Scissors clicked")
+        document.getElementById("scissorsEasy").style.left="30%"
+        document.getElementById("paperEasy").style.left="15%"
+        document.getElementById("rockEasy").style.left="15%"
+        playerChoice="scissorsEasy"
+    }
+
+    function RockMedium(){
+        console.log("Rock clicked")
+        document.getElementById("rockMedium").style.left="30%"
+        document.getElementById("paperMedium").style.left="15%"
+        document.getElementById("scissorsMedium").style.left="15%"
+        playerChoice="rockMedium"
+    }
+
+    function PaperMedium(){
+        console.log("Paper clicked")
+        document.getElementById("paperMedium").style.left="30%"
+        document.getElementById("rockMedium").style.left="15%"
+        document.getElementById("scissorsMedium").style.left="15%"
+        playerChoice="paperMedium"
+    }
+
+    function ScissorsMedium(){
+        console.log("Scissors clicked")
+        document.getElementById("scissorsMedium").style.left="30%"
+        document.getElementById("paperMedium").style.left="15%"
+        document.getElementById("rockMedium").style.left="15%"
+        playerChoice="scissorsMedium"
+    }
+
+    function RockHard(){
+        console.log("Rock clicked")
+        document.getElementById("rockHard").style.left="30%"
+        document.getElementById("paperHard").style.left="15%"
+        document.getElementById("scissorsHard").style.left="15%"
+        playerChoice="rockHard"
+    }
+
+    function PaperHard(){
+        console.log("Paper clicked")
+        document.getElementById("paperHard").style.left="30%"
+        document.getElementById("rockHard").style.left="15%"
+        document.getElementById("scissorsHard").style.left="15%"
+        playerChoice="paperHard"
+    }
+
+    function ScissorsHard(){
+        console.log("Scissors clicked")
+        document.getElementById("scissorsHard").style.left="30%"
+        document.getElementById("paperHard").style.left="15%"
+        document.getElementById("rockHard").style.left="15%"
+        playerChoice="scissorsHard"
+    }
+
+
+    // Battle Functions
+
+    function BattleEasy() {
+        computerChoice=Math.ceil(Math.random()*3)
+        console.log(playerChoice)
+        var message=document.getElementById("messageEasy")
+        document.getElementById("healthBarEasy").style.height=vie+"px"
+        document.getElementById("healthBarBotEasy").style.height=vieBot+"px"
+
+        if(playerChoice=="rockEasy"){
+                document.getElementById("rockBotEasy").style.left="85%"
+                document.getElementById("paperBotEasy").style.left="85%"
+                document.getElementById("scissorsBotEasy").style.left="70%"
+                message.innerHTML=("You Won The Round")
+                vieBot=vieBot-100
+                timeOutEasy()
+        }
+
+        if(playerChoice=="paperEasy"){
+                document.getElementById("rockBotEasy").style.left="70%"
+                document.getElementById("paperBotEasy").style.left="85%"
+                document.getElementById("scissorsBotEasy").style.left="85%"
+                message.innerHTML=("You Won The Round")
+                vieBot=vieBot-100
+                timeOutEasy()
+        }
+        
+        if(playerChoice=="scissorsEasy"){
+                document.getElementById("rockBotEasy").style.left="85%"
+                document.getElementById("paperBotEasy").style.left="70%"
+                document.getElementById("scissorsBotEasy").style.left="85%"
+                message.innerHTML=("You Won The Round")
+                vieBot=vieBot-100
+                timeOutEasy()
+        }
+
+        if (vie==0 | vie<0){
+            document.getElementById("loseAndWinScreen").style.display="block"
+            document.getElementById("message2").innerHTML="TOO BAD, YOU LOST THE MATCH!!!"
+
+        }
+
+        if (vieBot==0 | vieBot<0){
+            document.getElementById("loseAndWinScreen").style.display="block"
+            document.getElementById("message2").innerHTML="CONGRATULATIONS, YOU WON THE MATCH!!!"
+        }
+
+
+        document.getElementById("healthBarEasy").style.height=vie+"px"
+        document.getElementById("healthBarBotEasy").style.height=vieBot+"px"
+        
+        
+    }
+  
+    function BattleMedium() {
+        computerChoice=Math.ceil(Math.random()*3)
+        console.log(playerChoice)
+        var message=document.getElementById("messageMedium")
+        document.getElementById("healthBarMedium").style.height=vie+"px"
+        document.getElementById("healthBarBotMedium").style.height=vieBot+"px"
+
+        if(playerChoice=="rockMedium"){
+            if(computerChoice==1){
+                document.getElementById("rockBotMedium").style.left="70%"
+                document.getElementById("paperBotMedium").style.left="85%"
+                document.getElementById("scissorsBotMedium").style.left="85%"
+                message.innerHTML=("Draw")
+                timeOutMedium()
+            }
+
+            if(computerChoice==2){
+                document.getElementById("rockBotMedium").style.left="85%"
+                document.getElementById("paperBotMedium").style.left="70%"
+                document.getElementById("scissorsBotMedium").style.left="85%"
+                message.innerHTML=("You Lost the Round")
+                vie=vie-100
+                timeOutMedium()
+
+            }
+
+            if(computerChoice==3){
+                document.getElementById("rockBotMedium").style.left="85%"
+                document.getElementById("paperBotMedium").style.left="85%"
+                document.getElementById("scissorsBotMedium").style.left="70%"
+                message.innerHTML=("You Won the Round")
+                vieBot=vieBot-100
+                timeOutMedium()
+
+            }
+        }
+
+        if(playerChoice=="paperMedium"){
+            if(computerChoice==1){
+                document.getElementById("rockBotMedium").style.left="70%"
+                document.getElementById("paperBotMedium").style.left="85%"
+                document.getElementById("scissorsBotMedium").style.left="85%"
+                message.innerHTML=("You Won the Round")
+                vieBot=vieBot-100
+                timeOutMedium()
+                
+            }
+
+            if(computerChoice==2){
+                document.getElementById("rockBotMedium").style.left="85%"
+                document.getElementById("paperBotMedium").style.left="70%"
+                document.getElementById("scissorsBotMedium").style.left="85%"
+                message.innerHTML=("Draw")
+                timeOutMedium()
+            }
+
+            if(computerChoice==3){
+                document.getElementById("rockBotMedium").style.left="85%"
+                document.getElementById("paperBotMedium").style.left="85%"
+                document.getElementById("scissorsBotMedium").style.left="70%"
+                message.innerHTML=("You Lost the Round")
+                vie=vie-100
+                timeOutMedium()
+                
+            }
+        }
+
+        if(playerChoice=="scissorsMedium"){
+            if(computerChoice==1){
+                document.getElementById("rockBotMedium").style.left="70%"
+                document.getElementById("paperBotMedium").style.left="85%"
+                document.getElementById("scissorsBotMedium").style.left="85%"
+                message.innerHTML=("You Lost the Round")
+                vie=vie-100
+                timeOutMedium()
+                
+            }
+
+            if(computerChoice==2){
+                document.getElementById("rockBotMedium").style.left="85%"
+                document.getElementById("paperBotMedium").style.left="70%"
+                document.getElementById("scissorsBotMedium").style.left="85%"
+                message.innerHTML=("You Won the Round")
+                vieBot=vieBot-100
+                timeOutMedium()
+                
+            }
+
+            if(computerChoice==3){
+                document.getElementById("rockBotMedium").style.left="85%"
+                document.getElementById("paperBotMedium").style.left="85%"
+                document.getElementById("scissorsBotMedium").style.left="70%"
+                message.innerHTML=("Draw")
+                timeOutMedium()
+            }
+        }
+
+        if (vie==0 | vie<0){
+            document.getElementById("loseAndWinScreen").style.display="block"
+            document.getElementById("message2").innerHTML="TOO BAD, YOU LOST THE MATCH!!!"
+
+        }
+
+        if (vieBot==0 | vieBot<0){
+            document.getElementById("loseAndWinScreen").style.display="block"
+            document.getElementById("message2").innerHTML="CONGRATULATIONS, YOU WON THE MATCH!!!"
+        }
+
+
+        document.getElementById("healthBarMedium").style.height=vie+"px"
+        document.getElementById("healthBarBotMedium").style.height=vieBot+"px"
+        
+        
+    }
+    
+    function BattleHard() {
+        console.log(playerChoice)
+        var message=document.getElementById("messageHard")
+        document.getElementById("healthBarHard").style.height=vie+"px"
+        document.getElementById("healthBarBotHard").style.height=vieBot+"px"
+
+        if(playerChoice=="rockHard"){
+                document.getElementById("rockBotHard").style.left="85%"
+                document.getElementById("paperBotHard").style.left="70%"
+                document.getElementById("scissorsBotHard").style.left="85%"
+                message.innerHTML=("You Lost The Round")
+                vie=vie-100
+                timeOutHard()
+        }
+
+        if(playerChoice=="paperHard"){
+                document.getElementById("rockBotHard").style.left="85%"
+                document.getElementById("paperBotHard").style.left="85%"
+                document.getElementById("scissorsBotHard").style.left="70%"
+                message.innerHTML=("You Lost The Round")
+                vie=vie-100
+                timeOutHard()
+        }
+        
+        if(playerChoice=="scissorsHard"){
+                document.getElementById("rockBotHard").style.left="70%"
+                document.getElementById("paperBotHard").style.left="85%"
+                document.getElementById("scissorsBotHard").style.left="85%"
+                message.innerHTML=("You Lost The Round")
+                vie=vie-100
+                timeOutHard()
+        }
+
+        if (vie==0 | vie<0){
+            document.getElementById("loseAndWinScreen").style.display="block"
+            document.getElementById("message2").innerHTML="TOO BAD, YOU LOST THE MATCH!!!"
+
+        }
+
+        if (vieBot==0 | vieBot<0){
+            document.getElementById("loseAndWinScreen").style.display="block"
+            document.getElementById("message2").innerHTML="CONGRATULATIONS, YOU WON THE MATCH!!!"
+        }
+
+
+        document.getElementById("healthBarHard").style.height=vie+"px"
+        document.getElementById("healthBarBotHard").style.height=vieBot+"px"
+        
+        
+    }
+
+    // SetTimout Functions
+
+    function timeOutEasy(){
+        setTimeout(function(){
+            document.getElementById("messageEasy").style.display="block";
+            setTimeout(function(){
+                document.getElementById("rockBotEasy").style.left="85%"
+                document.getElementById("paperBotEasy").style.left="85%"
+                document.getElementById("scissorsBotEasy").style.left="85%"
+                document.getElementById("messageEasy").style.display="none";
+            },2000);
+        },2000);
+    }
+
+    function timeOutMedium(){
+        setTimeout(function(){
+            document.getElementById("messageMedium").style.display="block";
+            setTimeout(function(){
+                document.getElementById("rockBotMedium").style.left="85%"
+                document.getElementById("paperBotMedium").style.left="85%"
+                document.getElementById("scissorsBotMedium").style.left="85%"
+                document.getElementById("messageMedium").style.display="none";
+            },2000);
+        },2000);
+    }
+
+    function timeOutHard(){
+        setTimeout(function(){
+            document.getElementById("messageHard").style.display="block";
+            setTimeout(function(){
+                document.getElementById("rockBotHard").style.left="85%"
+                document.getElementById("paperBotHard").style.left="85%"
+                document.getElementById("scissorsBotHard").style.left="85%"
+                document.getElementById("messageHard").style.display="none";
+            },2000);
+        },2000);
+    }
+
+    // Restart Function
+
+    function restart(){
+        document.body.style.backgroundImage=("url(pixelBackground2.gif)")
+        document.getElementById("startScreen").style.display="block"
+        document.getElementById("mainScreenEasy").style.display="none"
+        document.getElementById("mainScreenMedium").style.display="none"
+        document.getElementById("mainScreenHard").style.display="none"
+        document.getElementById("loseAndWinScreen").style.display="none"
+        document.getElementById("music").style.display="none"
+        document.getElementById("music2").style.display="none"
+    }
+
+     //Playing music
+        
+    var sound=new Audio('backgroundmusic.mp3')
+        
+    function playMusic(){
+        sound.play()
+        sound.loop=true
+    }
+        
+    function stopMusic(){
+        sound.pause()
+    }
+        
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+    
+</body>
+
+
+</html>
